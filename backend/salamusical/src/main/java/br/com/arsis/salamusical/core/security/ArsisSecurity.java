@@ -14,8 +14,7 @@ public class ArsisSecurity {
 	
 	public Long getUsuarioId() {
 		Jwt jwt = (Jwt) getAuthentication().getPrincipal();
-		
-		
+				
 		return jwt.getClaim("usuario_id");
 	}
 	
