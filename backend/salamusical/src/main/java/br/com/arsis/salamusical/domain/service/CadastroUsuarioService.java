@@ -27,7 +27,7 @@ public class CadastroUsuarioService {
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
-		//usuarioRepository.detach(usuario);
+		usuarioRepository.detach(usuario);
 		
 		Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
 		
