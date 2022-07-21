@@ -1,7 +1,8 @@
 import { Button, FormControl, TextField } from '@material-ui/core';
 import { ArrowForward } from '@material-ui/icons';
 import { Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   MainContent,
@@ -10,12 +11,20 @@ import {
   DivLabels,
   FieldProps,
 } from './styles';
+import { isAuthenticated } from '../../services/auth';
 
 const LoginPage: React.FC = () => {
+  let navigate = useNavigate();
   const [loginInfos, setLoginInfos] = useState({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return navigate('/');
+    }
+  }, [isAuthenticated]);
 
   return (
     <Container>
